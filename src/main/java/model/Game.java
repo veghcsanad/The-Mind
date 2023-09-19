@@ -1,5 +1,6 @@
 package main.java.model;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -8,6 +9,7 @@ public class Game {
     Collection<PropertyChangeListener> listeners = new ArrayList<>();
     private List<Card> deck;
     private Card last = new Card(0);
+    private long lastPlayedTime = System.currentTimeMillis();
     private int numCards;
     private Player humanPlayer;
     private Player computerPlayer;
@@ -32,8 +34,10 @@ public class Game {
 
     public void newGame(int numCards) {
         initializeDeck();
+        this.numCards = numCards;
         this.humanPlayer.hand = dealCards(numCards);
         this.computerPlayer.hand = dealCards(numCards);
+        computerPlayCard();
     }
 
     private void initializeDeck() {
@@ -64,6 +68,7 @@ public class Game {
 
     public void playCard(Player player, Card card) {
         this.last = card;
+        lastPlayedTime = System.currentTimeMillis();
         player.hand.remove(card);
         if (isGameLost()) {
             gameLost = true;
@@ -71,6 +76,21 @@ public class Game {
             gameWon = true;
         }
         notifyListeners();
+        computerPlayCard();
+    }
+
+    public void computerPlayCard() {
+        int delay = calculateDelay(this.last.getNumber() - this.computerPlayer.hand.get(0).getNumber());
+        // CALCULATE DELAY, WAIT
+        playCard(this.computerPlayer, this.computerPlayer.hand.get(0));
+    }
+
+    private int calculateDelay(int gapSize) {
+        // Adjust these constants as needed for your game's pace
+        final int BASE_DELAY = 1000; // 1-second base delay
+        final int GAP_MULTIPLIER = 500; // 0.5 second per gap size
+
+        return BASE_DELAY + (gapSize * GAP_MULTIPLIER);
     }
 
     public boolean isGameWon() {
@@ -101,9 +121,11 @@ public class Game {
             return Integer.compare(a.getNumber(), b.getNumber());
         }
     };
+
     public void addListener(PropertyChangeListener listener) {
         listeners.add(listener);
     }
+
     private void notifyListeners() {
         PropertyChangeEvent payload = new PropertyChangeEvent(this, "game", null, null);
         for (PropertyChangeListener listener : listeners) {
