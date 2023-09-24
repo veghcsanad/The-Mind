@@ -35,8 +35,8 @@ public class FlowCardPanel extends JPanel {
     }
 
     private void addEmptyCard() {
-        int imgWidth = 90;
-        int imgHeight = 150;
+        int imgWidth = 135;
+        int imgHeight = 225;
         try {
             BufferedImage img = ImageIO.read(new File("src/main/resources/cards/empty.png"));
             ImageIcon crdImg = new ImageIcon(img);
@@ -55,10 +55,10 @@ public class FlowCardPanel extends JPanel {
             for (Card card : player.hand) {
                 addEmptyCard();
             }
-            return;
-        }
-        for (Card card : player.hand) {
-            addCardButton(card);
+        } else {
+            for (Card card : player.hand) {
+                addCardButton(card);
+            }
         }
         SwingUtilities.updateComponentTreeUI(this);
         revalidate();

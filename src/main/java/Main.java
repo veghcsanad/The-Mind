@@ -2,12 +2,13 @@
 
 package main.java;
 
-import main.java.model.Game;
+import main.java.model.StartGame;
 import main.java.view.GameView;
+import main.java.view.NewGame;
 
 public class Main {
     public static void main(String[] args) {
-        Game game = new Game(3);
-        GameView gameView = new GameView(game);
+        StartGame startGame = new StartGame(3);
+        NewGame newGame = new NewGame(startGame);
     }
 }

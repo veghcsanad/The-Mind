@@ -9,12 +9,12 @@ public class Game {
     Collection<PropertyChangeListener> listeners = new ArrayList<>();
     private List<Card> deck;
     private Card last = new Card(0);
-    private long lastPlayedTime = System.currentTimeMillis();
     private int numCards;
     private Player humanPlayer;
     private Player computerPlayer;
     public boolean gameWon;
     public boolean gameLost;
+    private ComputerTimer computerTimer = new ComputerTimer(this);
 
     public Player getHumanPlayer(){
         return humanPlayer;
@@ -30,14 +30,7 @@ public class Game {
         initializeDeck();
         this.humanPlayer = new Player(dealCards(numCards), true);
         this.computerPlayer = new Player(dealCards(numCards), false);
-    }
-
-    public void newGame(int numCards) {
-        initializeDeck();
-        this.numCards = numCards;
-        this.humanPlayer.hand = dealCards(numCards);
-        this.computerPlayer.hand = dealCards(numCards);
-        computerPlayCard();
+        computerTimer.start();
     }
 
     private void initializeDeck() {
@@ -68,20 +61,21 @@ public class Game {
 
     public void playCard(Player player, Card card) {
         this.last = card;
-        lastPlayedTime = System.currentTimeMillis();
         player.hand.remove(card);
         if (isGameLost()) {
             gameLost = true;
         } else if (isGameWon()) {
             gameWon = true;
         }
+        computerTimer.restart();
         notifyListeners();
-        computerPlayCard();
     }
 
     public void computerPlayCard() {
-        int delay = calculateDelay(this.last.getNumber() - this.computerPlayer.hand.get(0).getNumber());
-        // CALCULATE DELAY, WAIT
+        if (computerPlayer.hand.isEmpty()) {
+            computerTimer.stop();
+            return;
+        }
         playCard(this.computerPlayer, this.computerPlayer.hand.get(0));
     }
 
@@ -94,7 +88,17 @@ public class Game {
     }
 
     public boolean isGameWon() {
+        if (humanPlayer.hand.isEmpty() && !computerPlayer.hand.isEmpty()) {
+            computerPlayCard();
+            return false;
+        }
+        if (!humanPlayer.hand.isEmpty() && computerPlayer.hand.isEmpty()) {
+            computerTimer.stop();
+            return false;
+        }
         if (humanPlayer.hand.isEmpty() && computerPlayer.hand.isEmpty()) {
+            computerTimer.stop();
+            System.out.println("WON");
             return true;
         }
         return false;
@@ -103,11 +107,15 @@ public class Game {
     public boolean isGameLost() {
         for (Card card : humanPlayer.hand) {
             if (card.getNumber() < last.getNumber()) {
+                computerTimer.stop();
+                System.out.println("LOST");
                 return true;
             }
         }
         for (Card card : computerPlayer.hand) {
             if (card.getNumber() < last.getNumber()) {
+                computerTimer.stop();
+                System.out.println("LOST");
                 return true;
             }
         }
