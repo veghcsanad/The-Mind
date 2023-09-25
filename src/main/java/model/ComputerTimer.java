@@ -18,7 +18,7 @@ public class ComputerTimer {
         @Override
         public void actionPerformed(ActionEvent e) {
             elapsedTime += WAITING_TIME;
-            if (elapsedTime == gap * WAITING_TIME) {
+            if ((elapsedTime == gap * WAITING_TIME) || (game.getHumanPlayer().hand.isEmpty())) {
                 game.computerPlayCard();
             }
         }

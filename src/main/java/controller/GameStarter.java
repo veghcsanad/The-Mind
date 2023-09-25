@@ -1,23 +1,22 @@
 package main.java.controller;
 
-import main.java.model.Card;
 import main.java.model.Game;
-import main.java.model.StartGame;
-import main.java.view.NewGame;
+import main.java.view.DiscardedPanel;
+import main.java.view.GameView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameStarter implements ActionListener {
-    private final StartGame modelStartGame;
-    private final NewGame modelNewGame;
-    public GameStarter(StartGame modelStartGame, NewGame modelNewGame) {
-        this.modelStartGame = modelStartGame;
-        this.modelNewGame = modelNewGame;
+    private Game modelGame;
+    private GameView modelGameView;
+    public GameStarter(Game modelGame, GameView modelGameView) {
+        this.modelGame = modelGame;
+        this.modelGameView = modelGameView;
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        modelStartGame.start();
-        modelNewGame.setVisible(false);
+        modelGame.start();
+        modelGameView.updatePanels();
     }
 }

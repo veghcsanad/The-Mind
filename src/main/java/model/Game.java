@@ -1,5 +1,8 @@
 package main.java.model;
 
+import main.java.view.GameView;
+
+import javax.swing.*;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.beans.PropertyChangeEvent;
@@ -12,8 +15,9 @@ public class Game {
     private int numCards;
     private Player humanPlayer;
     private Player computerPlayer;
-    public boolean gameWon;
-    public boolean gameLost;
+    public boolean gameWon = false;
+    public boolean gameLost = false;
+    private boolean started = false;
     private ComputerTimer computerTimer = new ComputerTimer(this);
 
     public Player getHumanPlayer(){
@@ -23,14 +27,20 @@ public class Game {
         return computerPlayer;
     }
 
-    public Game(int numCards) {
-        this.numCards = numCards;
+    public Game() {
+        introGame();
         this.gameLost = false;
         this.gameWon = false;
         initializeDeck();
         this.humanPlayer = new Player(dealCards(numCards), true);
         this.computerPlayer = new Player(dealCards(numCards), false);
-        computerTimer.start();
+    }
+
+    public void introGame() {
+        JOptionPane.showMessageDialog(null, "Hello! This is The Mind! A game where you have fun!\nYou will find the instructions in the menu bar. Let's get started!");
+        Object[] options = {"1", "2", "3", "4", "5", "6"};
+        this.numCards = JOptionPane.showOptionDialog(null,"How many cards do you want to play with?","Start new game!", JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,null, options, options[2]) + 1;
     }
 
     private void initializeDeck() {
@@ -62,11 +72,7 @@ public class Game {
     public void playCard(Player player, Card card) {
         this.last = card;
         player.hand.remove(card);
-        if (isGameLost()) {
-            gameLost = true;
-        } else if (isGameWon()) {
-            gameWon = true;
-        }
+        winOrLose();
         computerTimer.restart();
         notifyListeners();
     }
@@ -87,39 +93,37 @@ public class Game {
         return BASE_DELAY + (gapSize * GAP_MULTIPLIER);
     }
 
-    public boolean isGameWon() {
-        if (humanPlayer.hand.isEmpty() && !computerPlayer.hand.isEmpty()) {
-            computerPlayCard();
-            return false;
-        }
-        if (!humanPlayer.hand.isEmpty() && computerPlayer.hand.isEmpty()) {
-            computerTimer.stop();
-            return false;
-        }
-        if (humanPlayer.hand.isEmpty() && computerPlayer.hand.isEmpty()) {
-            computerTimer.stop();
-            System.out.println("WON");
-            return true;
-        }
-        return false;
+    public boolean isStarted() { return started; }
+    public void start() {
+        started = true;
+        computerTimer.start();
     }
 
-    public boolean isGameLost() {
+    public void winOrLose() {
+        if (humanPlayer.hand.isEmpty() && computerPlayer.hand.isEmpty()) {
+            computerTimer.stop();
+            gameWon = true;
+        }
         for (Card card : humanPlayer.hand) {
             if (card.getNumber() < last.getNumber()) {
                 computerTimer.stop();
-                System.out.println("LOST");
-                return true;
+                gameLost = true;
             }
         }
         for (Card card : computerPlayer.hand) {
             if (card.getNumber() < last.getNumber()) {
                 computerTimer.stop();
-                System.out.println("LOST");
-                return true;
+                gameLost = true;
             }
         }
-        return false;
+    }
+
+    public boolean isGameWon() {
+        return gameWon;
+    }
+
+    public boolean isGameLost() {
+        return gameLost;
     }
 
     public Comparator<Card> cardComparator = new Comparator<Card>() {

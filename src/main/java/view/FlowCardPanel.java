@@ -21,22 +21,27 @@ public class FlowCardPanel extends JPanel {
     }
 
     private JButton addCardButton(Card card) {
-        int btnWidth = 180;
-        int btnHeight = 300;
+        int btnWidth = 135;
+        int btnHeight = 225;
         ImageIcon crdImg = new ImageIcon(card.getCardPicture());
         Image scaledCrdImg = crdImg.getImage().getScaledInstance(btnWidth, btnHeight, Image.SCALE_SMOOTH);
         JButton cardPicButton = new JButton(new ImageIcon(scaledCrdImg));
         cardPicButton.setPreferredSize(new Dimension(btnWidth, btnHeight));
         cardPicButton.addActionListener(new CardDiscarder(game, card));
         add(cardPicButton);
+        if(!game.isStarted()) {
+            cardPicButton.setEnabled(false);
+        } else {
+            cardPicButton.setEnabled(true);
+        }
         setBackground(new Color(0, 102, 51));
         revalidate();
         return cardPicButton;
     }
 
     private void addEmptyCard() {
-        int imgWidth = 135;
-        int imgHeight = 225;
+        int imgWidth = 90;
+        int imgHeight = 150;
         try {
             BufferedImage img = ImageIO.read(new File("src/main/resources/cards/empty.png"));
             ImageIcon crdImg = new ImageIcon(img);
