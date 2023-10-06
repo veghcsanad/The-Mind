@@ -54,4 +54,30 @@ public class DiscardedPanel extends JPanel {
         add(cardsHuman);
         add(cardsComputer);
     }
+
+    public void updateToEndExp() {
+        JLabel cardsHuman = new JLabel("Your cards were: " + game.getHumanPlayer().ogHand);
+        JLabel cardsComputer = new JLabel("The computer's cards were: " + game.getComputerPlayer().ogHand);
+        cardsHuman.setFont(new Font(cardsHuman.getFont().getName(), cardsHuman.getFont().getStyle(), 24));
+        cardsHuman.setForeground(new Color(255,255,255));
+        cardsComputer.setFont(new Font(cardsComputer.getFont().getName(), cardsComputer.getFont().getStyle(), 24));
+        cardsComputer.setForeground(new Color(255,255,255));
+        JLabel goodbyeMsg = new JLabel();
+        if (game.isGameWon()) {
+            goodbyeMsg.setText("You won this round! Congratulations!");
+        } else {
+            goodbyeMsg.setText("You lost this round! Better luck next time!");
+        }
+        goodbyeMsg.setFont(new Font(goodbyeMsg.getFont().getName(), goodbyeMsg.getFont().getStyle(), 24));
+        goodbyeMsg.setForeground(new Color(255,255,255));
+        add(goodbyeMsg);
+        add(cardsHuman);
+        add(cardsComputer);
+
+        JButton nextRound = new JButton("Next Round");
+        nextRound.addActionListener(e -> {
+            game.goNextRound();
+        });
+        add(nextRound);
+    }
 }

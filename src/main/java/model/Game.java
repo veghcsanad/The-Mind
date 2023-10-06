@@ -1,9 +1,6 @@
 package main.java.model;
 
-import main.java.view.GameView;
-
 import javax.swing.*;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -18,6 +15,8 @@ public class Game {
     public boolean gameWon = false;
     public boolean gameLost = false;
     private boolean started = false;
+    private boolean nextRound = false;
+    private boolean isExperiment;
     private ComputerTimer computerTimer = new ComputerTimer(this);
 
     public Player getHumanPlayer(){
@@ -31,9 +30,18 @@ public class Game {
         introGame();
         this.gameLost = false;
         this.gameWon = false;
+        this.isExperiment = false;
         initializeDeck();
         this.humanPlayer = new Player(dealCards(numCards), true);
         this.computerPlayer = new Player(dealCards(numCards), false);
+    }
+
+    public Game(ArrayList<Card> handP, ArrayList<Card> handC) {
+        this.gameLost = false;
+        this.gameWon = false;
+        this.isExperiment = true;
+        this.humanPlayer = new Player(handP, true);
+        this.computerPlayer = new Player(handC, false);
     }
 
     public void introGame() {
@@ -124,6 +132,18 @@ public class Game {
 
     public boolean isGameLost() {
         return gameLost;
+    }
+
+    public boolean isNextRound() {
+        return nextRound;
+    }
+
+    public boolean isExperiment() {
+        return isExperiment;
+    }
+
+    public void goNextRound() {
+        this.nextRound = true;
     }
 
     public Comparator<Card> cardComparator = new Comparator<Card>() {

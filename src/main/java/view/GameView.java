@@ -73,7 +73,11 @@ public class GameView extends JFrame implements PropertyChangeListener {
     public void updateToEnd() {
         this.flowCardPanelComputer.removeAll();
         this.flowCardPanelHuman.removeAll();
-        this.discardedPanel.updateToEnd();
+        if (game.isExperiment()) {
+            this.discardedPanel.updateToEndExp();
+        } else {
+            this.discardedPanel.updateToEnd();
+        }
     }
 
     @Override
