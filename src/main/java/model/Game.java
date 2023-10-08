@@ -17,6 +17,9 @@ public class Game {
     private boolean started = false;
     private boolean nextRound = false;
     private boolean isExperiment;
+    private Experiment experiment = null;
+    private boolean train = false;
+    private TrainExp trainExp = null;
     private ComputerTimer computerTimer = new ComputerTimer(this);
 
     public Player getHumanPlayer(){
@@ -36,10 +39,21 @@ public class Game {
         this.computerPlayer = new Player(dealCards(numCards), false);
     }
 
-    public Game(ArrayList<Card> handP, ArrayList<Card> handC) {
+    public Game(ArrayList<Card> handP, ArrayList<Card> handC, Experiment experiment) {
         this.gameLost = false;
         this.gameWon = false;
         this.isExperiment = true;
+        this.experiment = experiment;
+        this.humanPlayer = new Player(handP, true);
+        this.computerPlayer = new Player(handC, false);
+    }
+
+    public Game(ArrayList<Card> handP, ArrayList<Card> handC, boolean isTrain, TrainExp trainExp) {
+        this.gameLost = false;
+        this.gameWon = false;
+        this.isExperiment = true;
+        this.train = true;
+        this.trainExp = trainExp;
         this.humanPlayer = new Player(handP, true);
         this.computerPlayer = new Player(handC, false);
     }
@@ -141,6 +155,12 @@ public class Game {
     public boolean isExperiment() {
         return isExperiment;
     }
+
+    public Experiment getExperiment() { return experiment; }
+
+    public boolean isTrain() { return train; }
+
+    public TrainExp getTrainExp() { return trainExp; }
 
     public void goNextRound() {
         this.nextRound = true;

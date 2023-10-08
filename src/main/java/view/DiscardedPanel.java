@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import main.java.controller.GameStarter;
+import main.java.controller.NextBtnCtr;
 import main.java.model.Card;
 import main.java.model.Game;
 
@@ -18,6 +19,7 @@ public class DiscardedPanel extends JPanel {
         setBackground(new Color(13,118,34));
         JButton startButton = new JButton("START GAME");
         startButton.addActionListener(new GameStarter(game, gameView));
+        startButton.setFont(new Font(startButton.getFont().getName(), startButton.getFont().getStyle(), 20));
         add(startButton);
     }
 
@@ -74,10 +76,23 @@ public class DiscardedPanel extends JPanel {
         add(cardsHuman);
         add(cardsComputer);
 
-        JButton nextRound = new JButton("Next Round");
-        nextRound.addActionListener(e -> {
-            game.goNextRound();
-        });
-        add(nextRound);
+        JButton nextRound = null;
+        if(game.isTrain()) {
+            nextRound = new JButton("Next");
+            nextRound.addActionListener(new NextBtnCtr(game.getTrainExp()));
+        } else {
+            if (game.getExperiment().getRound() == 3) {
+                nextRound = new JButton("Finish experiment.");
+                nextRound.addActionListener(e -> {
+                    System.exit(0);
+                });
+            } else {
+                nextRound = new JButton("Next Round");
+                nextRound.addActionListener(e -> {
+                    game.getExperiment().nextRound();
+                });
+            }
+        }
+        this.add(nextRound);
     }
 }

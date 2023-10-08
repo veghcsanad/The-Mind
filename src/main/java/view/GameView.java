@@ -23,7 +23,9 @@ public class GameView extends JFrame implements PropertyChangeListener {
         this.flowCardPanelComputer = new FlowCardPanel(game);
         this.discardedPanel = new DiscardedPanel(game, this);
         init();
-        initMenuBar();
+        if (!game.isExperiment()) {
+            initMenuBar();
+        }
         revalidate();
     }
 
@@ -37,6 +39,10 @@ public class GameView extends JFrame implements PropertyChangeListener {
     }
 
     private void init() {
+        if (game.isExperiment()) {
+            //setExtendedState(JFrame.MAXIMIZED_BOTH);
+            setUndecorated(true);
+        }
         setTitle("The Mind");
         setSize(700, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

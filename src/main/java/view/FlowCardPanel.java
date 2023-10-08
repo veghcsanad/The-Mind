@@ -21,8 +21,8 @@ public class FlowCardPanel extends JPanel {
     }
 
     private JButton addCardButton(Card card) {
-        int btnWidth = 135;
-        int btnHeight = 225;
+        int btnWidth = 180;
+        int btnHeight = 300;
         ImageIcon crdImg = new ImageIcon(card.getCardPicture());
         Image scaledCrdImg = crdImg.getImage().getScaledInstance(btnWidth, btnHeight, Image.SCALE_SMOOTH);
         JButton cardPicButton = new JButton(new ImageIcon(scaledCrdImg));
@@ -40,8 +40,8 @@ public class FlowCardPanel extends JPanel {
     }
 
     private void addEmptyCard() {
-        int imgWidth = 90;
-        int imgHeight = 150;
+        int imgWidth = 135;
+        int imgHeight = 200;
         try {
             BufferedImage img = ImageIO.read(new File("src/main/resources/cards/empty.png"));
             ImageIcon crdImg = new ImageIcon(img);
