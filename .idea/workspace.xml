@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="feeed321-3a60-43a7-a2d1-322aa50019fc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/NextBtnCtr.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/TrainExp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/TrainExpView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/DataRecorder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/ComputerTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/ComputerTimer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Experiment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Experiment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/DiscardedPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/DiscardedPanel.java" afterDir="false" />

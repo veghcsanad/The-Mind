@@ -12,6 +12,7 @@ public class Game {
     private int numCards;
     private Player humanPlayer;
     private Player computerPlayer;
+    private int computerStrategy = -1;
     public boolean gameWon = false;
     public boolean gameLost = false;
     private boolean started = false;
@@ -39,13 +40,14 @@ public class Game {
         this.computerPlayer = new Player(dealCards(numCards), false);
     }
 
-    public Game(ArrayList<Card> handP, ArrayList<Card> handC, Experiment experiment) {
+    public Game(ArrayList<Card> handP, ArrayList<Card> handC, Experiment experiment, int computerStrategy) {
         this.gameLost = false;
         this.gameWon = false;
         this.isExperiment = true;
         this.experiment = experiment;
         this.humanPlayer = new Player(handP, true);
         this.computerPlayer = new Player(handC, false);
+        this.computerStrategy = computerStrategy;
     }
 
     public Game(ArrayList<Card> handP, ArrayList<Card> handC, boolean isTrain, TrainExp trainExp) {
@@ -96,6 +98,9 @@ public class Game {
         player.hand.remove(card);
         winOrLose();
         computerTimer.restart();
+        if(isExperiment && !train) {
+            experiment.getDataRecorder().cardPlayed(player, card);
+        }
         notifyListeners();
     }
 
@@ -107,18 +112,14 @@ public class Game {
         playCard(this.computerPlayer, this.computerPlayer.hand.get(0));
     }
 
-    private int calculateDelay(int gapSize) {
-        // Adjust these constants as needed for your game's pace
-        final int BASE_DELAY = 1000; // 1-second base delay
-        final int GAP_MULTIPLIER = 500; // 0.5 second per gap size
-
-        return BASE_DELAY + (gapSize * GAP_MULTIPLIER);
-    }
-
     public boolean isStarted() { return started; }
+
     public void start() {
         started = true;
         computerTimer.start();
+        if (isExperiment && !isTrain()) {
+            experiment.getDataRecorder().resetTime();
+        }
     }
 
     public void winOrLose() {
@@ -158,13 +159,11 @@ public class Game {
 
     public Experiment getExperiment() { return experiment; }
 
+    public int getComputerStrategy() { return computerStrategy; }
+
     public boolean isTrain() { return train; }
 
     public TrainExp getTrainExp() { return trainExp; }
-
-    public void goNextRound() {
-        this.nextRound = true;
-    }
 
     public Comparator<Card> cardComparator = new Comparator<Card>() {
         @Override

@@ -16,7 +16,13 @@ public class DiscardedPanel extends JPanel {
     public DiscardedPanel(Game game, GameView gameView) {
         this.game = game;
         this.gameView = gameView;
-        setBackground(new Color(13,118,34));
+        setBackground(new Color(0, 102, 51));
+        if (game.isExperiment() && !game.isTrain()) {
+            JLabel roundCount = new JLabel("Round " + String.valueOf(game.getExperiment().getRound()));
+            roundCount.setFont(new Font(roundCount.getFont().getName(), roundCount.getFont().getStyle(), 24));
+            roundCount.setForeground(new Color(255,255,255));
+            add(roundCount);
+        }
         JButton startButton = new JButton("START GAME");
         startButton.addActionListener(new GameStarter(game, gameView));
         startButton.setFont(new Font(startButton.getFont().getName(), startButton.getFont().getStyle(), 20));
@@ -58,6 +64,7 @@ public class DiscardedPanel extends JPanel {
     }
 
     public void updateToEndExp() {
+        removeAll();
         JLabel cardsHuman = new JLabel("Your cards were: " + game.getHumanPlayer().ogHand);
         JLabel cardsComputer = new JLabel("The computer's cards were: " + game.getComputerPlayer().ogHand);
         cardsHuman.setFont(new Font(cardsHuman.getFont().getName(), cardsHuman.getFont().getStyle(), 24));
@@ -66,33 +73,44 @@ public class DiscardedPanel extends JPanel {
         cardsComputer.setForeground(new Color(255,255,255));
         JLabel goodbyeMsg = new JLabel();
         if (game.isGameWon()) {
-            goodbyeMsg.setText("You won this round! Congratulations!");
+            goodbyeMsg.setText(
+                    "<html>" +
+                    "<center>" +
+                    "    <b><h2>WON</h2></b>" +
+                    "</center>" +
+                    "<p> You completed this round without" +
+                    "<p> any mistake." +
+                    "</html>");
         } else {
-            goodbyeMsg.setText("You lost this round! Better luck next time!");
+            if ((!game.getComputerPlayer().hand.isEmpty()) &&
+                    (game.getComputerPlayer().hand.get(0).getNumber() < game.getLast().getNumber())) {
+                goodbyeMsg.setText(
+                        "<html>" +
+                        "<center>" +
+                        "    <b><h2>LOST</h2></b>" +
+                        "</center>" +
+                        "<p> There was a mistake." +
+                        "<p> You played " + game.getLast().getNumber() + " but the" +
+                        "<p> computer had " + game.getComputerPlayer().hand.get(0) + "." +
+                        "</html>");
+            } else if (!game.getHumanPlayer().hand.isEmpty()) {
+                goodbyeMsg.setText(
+                        "<html>" +
+                        "<center>" +
+                        "    <b><h2>LOST</h2></b>" +
+                        "</center>" +
+                        "<p> There was a mistake." +
+                        "<p> The computer played " + game.getLast().getNumber() + "but you had" +
+                        "<p>  " + game.getHumanPlayer().hand.get(0) + " in your hand." +
+                        "</html>");
+            } else {
+                goodbyeMsg.setText("There was an error.");
+            }
         }
         goodbyeMsg.setFont(new Font(goodbyeMsg.getFont().getName(), goodbyeMsg.getFont().getStyle(), 24));
         goodbyeMsg.setForeground(new Color(255,255,255));
-        add(goodbyeMsg);
         add(cardsHuman);
         add(cardsComputer);
-
-        JButton nextRound = null;
-        if(game.isTrain()) {
-            nextRound = new JButton("Next");
-            nextRound.addActionListener(new NextBtnCtr(game.getTrainExp()));
-        } else {
-            if (game.getExperiment().getRound() == 3) {
-                nextRound = new JButton("Finish experiment.");
-                nextRound.addActionListener(e -> {
-                    System.exit(0);
-                });
-            } else {
-                nextRound = new JButton("Next Round");
-                nextRound.addActionListener(e -> {
-                    game.getExperiment().nextRound();
-                });
-            }
-        }
-        this.add(nextRound);
+        add(goodbyeMsg);
     }
 }

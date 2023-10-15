@@ -8,6 +8,7 @@ import java.beans.PropertyChangeListener;
 import main.java.controller.GiveInstructions;
 import main.java.controller.GiveUpper;
 import main.java.controller.NewGame;
+import main.java.controller.NextBtnCtr;
 import main.java.model.Game;
 
 
@@ -81,6 +82,30 @@ public class GameView extends JFrame implements PropertyChangeListener {
         this.flowCardPanelHuman.removeAll();
         if (game.isExperiment()) {
             this.discardedPanel.updateToEndExp();
+            JButton nextRound;
+            if(game.isTrain()) {
+                nextRound = new JButton("Next");
+                nextRound.addActionListener(new NextBtnCtr(game.getTrainExp()));
+            } else {
+                if (game.getExperiment().getRound() == game.getExperiment().MAX_ROUND) {
+                    nextRound = new JButton("Finish experiment.");
+                    nextRound.addActionListener(e -> {
+                        game.getExperiment().getDataRecorder().recordGame(game);
+                        game.getExperiment().getDataRecorder().recordExperiment();
+                        System.exit(0);
+                    });
+                } else {
+                    nextRound = new JButton("Next Round");
+                    nextRound.addActionListener(e -> {
+                        game.getExperiment().getDataRecorder().recordGame(game);
+                        game.getExperiment().nextRound();
+                    });
+                }
+            }
+            JPanel btnPanel = new JPanel();
+            btnPanel.add(nextRound);
+            btnPanel.setBackground(new Color(0,102,51));
+            this.add(btnPanel, BorderLayout.EAST);
         } else {
             this.discardedPanel.updateToEnd();
         }

@@ -1,6 +1,7 @@
 package main.java.view;
 
 import main.java.controller.CardDiscarder;
+import main.java.controller.NextBtnCtr;
 import main.java.model.Card;
 import main.java.model.Game;
 import main.java.model.Player;
@@ -29,7 +30,8 @@ public class FlowCardPanel extends JPanel {
         cardPicButton.setPreferredSize(new Dimension(btnWidth, btnHeight));
         cardPicButton.addActionListener(new CardDiscarder(game, card));
         add(cardPicButton);
-        if(!game.isStarted()) {
+        if(!game.isStarted() || (!game.getHumanPlayer().hand.isEmpty() &&
+                card.getNumber() != game.getHumanPlayer().hand.get(0).getNumber())) {
             cardPicButton.setEnabled(false);
         } else {
             cardPicButton.setEnabled(true);

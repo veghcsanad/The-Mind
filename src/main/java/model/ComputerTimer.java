@@ -8,17 +8,35 @@ public class ComputerTimer {
     private int elapsedTime = 0;
     private int gap = 0;
     private Game game;
-    private final int WAITING_TIME = 500; // in milliseconds
+    private final int WAITING_TIME = 300; // in milliseconds
 
     public ComputerTimer(Game game) {
         this.game = game;
     }
 
-    Timer timer = new Timer(500, new ActionListener() {
+    Timer timer = new Timer(WAITING_TIME, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             elapsedTime += WAITING_TIME;
-            if ((elapsedTime == gap * WAITING_TIME) || (game.getHumanPlayer().hand.isEmpty())) {
+            boolean playCard;
+            if (game.getHumanPlayer().hand.isEmpty()) {
+                playCard = true;
+            } else {
+                switch (game.getComputerStrategy()) {
+                    case 1:
+                        playCard = ((elapsedTime == (gap * WAITING_TIME)*2) &&
+                                game.getComputerPlayer().hand.size() == 1) || ((elapsedTime == gap * WAITING_TIME) &&
+                                game.getComputerPlayer().hand.size() > 1);
+                        break;
+                    case 2:
+                        playCard = ((game.getComputerPlayer().hand.size() != 1) &&
+                                (elapsedTime == gap * WAITING_TIME));
+                        break;
+                    default:
+                        playCard = (elapsedTime == gap * WAITING_TIME);
+                }
+            }
+            if (playCard) {
                 game.computerPlayCard();
             }
         }
