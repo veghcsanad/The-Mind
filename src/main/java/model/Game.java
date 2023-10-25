@@ -127,17 +127,13 @@ public class Game {
             computerTimer.stop();
             gameWon = true;
         }
-        for (Card card : humanPlayer.hand) {
-            if (card.getNumber() < last.getNumber()) {
-                computerTimer.stop();
-                gameLost = true;
-            }
+        if ((!humanPlayer.hand.isEmpty()) && (humanPlayer.hand.get(0).getNumber() < last.getNumber())) {
+            computerTimer.stop();
+            gameLost = true;
         }
-        for (Card card : computerPlayer.hand) {
-            if (card.getNumber() < last.getNumber()) {
-                computerTimer.stop();
-                gameLost = true;
-            }
+        if ((!computerPlayer.hand.isEmpty()) && (computerPlayer.hand.get(0).getNumber() < last.getNumber())) {
+            computerTimer.stop();
+            gameLost = true;
         }
     }
 

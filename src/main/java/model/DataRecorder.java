@@ -51,8 +51,18 @@ public class DataRecorder {
     }
 
     public void recordExperiment() {
-        // write data to file
-        writeArrayListToFile(data, "experimentData" + LocalDateTime.now() + ".txt");
+
+        // Get the current date and time as a string
+        String timestamp = LocalDateTime.now().toString();
+
+        // Replace colons (:) and periods (.) in the timestamp to make it a valid file name
+        timestamp = timestamp.replace(":", "-").replace(".", "_");
+
+        // Create the file name with the folder path and timestamp
+        String fileName = "experimentData_" + timestamp + ".txt";
+
+        // Write data to the file
+        writeArrayListToFile(data, fileName);
     }
 
     public static void writeArrayListToFile(ArrayList<ArrayList<String>> list, String fileName) {

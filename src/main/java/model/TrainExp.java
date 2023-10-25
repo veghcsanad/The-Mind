@@ -46,4 +46,13 @@ public class TrainExp {
             listener.propertyChange(payload);
         }
     }
+
+    public void previousStage() {
+        if (stage == 4) {
+            stage = 1;
+        } else {
+            stage = stage - 1;
+        }
+        notifyListeners();
+    }
 }

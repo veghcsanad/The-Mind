@@ -7,6 +7,7 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import main.java.controller.BckBtnCtr;
 import main.java.controller.NextBtnCtr;
 import main.java.model.Card;
 import main.java.model.Experiment;
@@ -17,7 +18,8 @@ public class TrainExpView extends JFrame implements PropertyChangeListener {
     private TrainExp trainExp;
     private boolean ended = false;
     private JPanel panel = new JPanel();
-    private JButton btn;
+    private JButton bckBtn;
+    private JButton nxtBtn;
 
     public TrainExpView(TrainExp trainExp) {
         this.trainExp = trainExp;
@@ -37,11 +39,17 @@ public class TrainExpView extends JFrame implements PropertyChangeListener {
         updatePanels();
         this.add(panel, BorderLayout.NORTH);
         JPanel btnPanel = new JPanel();
-        this.btn = new JButton("Next");
-        btn.setFont(new Font(btn.getFont().getName(), btn.getFont().getStyle(), 20));
-        btn.addActionListener(new NextBtnCtr(trainExp));
+        this.bckBtn = new JButton("Back");
+        bckBtn.setFont(new Font(bckBtn.getFont().getName(), bckBtn.getFont().getStyle(), 20));
+        bckBtn.addActionListener(new BckBtnCtr(trainExp));
         this.add(new JLabel(""), BorderLayout.CENTER);
-        btnPanel.add(btn);
+        bckBtn.setEnabled(false);
+        btnPanel.add(bckBtn);
+        this.nxtBtn = new JButton("Next");
+        nxtBtn.setFont(new Font(nxtBtn.getFont().getName(), nxtBtn.getFont().getStyle(), 20));
+        nxtBtn.addActionListener(new NextBtnCtr(trainExp));
+        this.add(new JLabel(""), BorderLayout.CENTER);
+        btnPanel.add(nxtBtn);
         this.add(btnPanel, BorderLayout.CENTER);
         revalidate();
         setVisible(true);
@@ -117,6 +125,8 @@ public class TrainExpView extends JFrame implements PropertyChangeListener {
         instructionText.setFont(new Font(instructionText.getFont().getName(), instructionText.getFont().getStyle(), 18));
         instructionText.setForeground(new Color(0,0,0));
         panel.add(instructionText);
+        bckBtn.setEnabled(true);
+        nxtBtn.setText("Next");
         revalidate();
     }
 
@@ -140,14 +150,14 @@ public class TrainExpView extends JFrame implements PropertyChangeListener {
                 "    <b><h2>Starting the experiment...</h2></b>" +
                 "</center>" +
                 "<p> Now you should be ready to play the game.<p>" +
-                "<p> There is going to be 10 trials where you and" +
+                "<p> There is going to be 8 trials where you and" +
                 "<p> the computer will have 3 cards each. <p>" +
                 "<p> Good luck!" +
                 "</html>");
         instructionText.setFont(new Font(instructionText.getFont().getName(), instructionText.getFont().getStyle(), 18));
         instructionText.setForeground(new Color(0,0,0));
         panel.add(instructionText);
-        btn.setText("Start experiment!");
+        nxtBtn.setText("Start experiment!");
         revalidate();
     }
 

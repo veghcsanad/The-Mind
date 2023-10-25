@@ -88,11 +88,11 @@ public class GameView extends JFrame implements PropertyChangeListener {
                 nextRound.addActionListener(new NextBtnCtr(game.getTrainExp()));
             } else {
                 if (game.getExperiment().getRound() == game.getExperiment().MAX_ROUND) {
-                    nextRound = new JButton("Finish experiment.");
+                    nextRound = new JButton("Finish");
                     nextRound.addActionListener(e -> {
                         game.getExperiment().getDataRecorder().recordGame(game);
                         game.getExperiment().getDataRecorder().recordExperiment();
-                        System.exit(0);
+                        finishExp();
                     });
                 } else {
                     nextRound = new JButton("Next Round");
@@ -109,6 +109,24 @@ public class GameView extends JFrame implements PropertyChangeListener {
         } else {
             this.discardedPanel.updateToEnd();
         }
+    }
+
+    private void finishExp() {
+        removeAll();
+        setBackground(new Color(255,255,255));
+        JOptionPane.showMessageDialog(null, "<html>" +
+                "<center>" +
+                "    <b><h2>The experiment is finished.</h2></b>" +
+                "</center>" +
+                "<p> This is the end of the experiment.</p>" +
+                "<p> Thank you for participation! Please do not</p>" +
+                "<p> forget to fill out the questionnaire.</p>" +
+                "</html>");
+        this.setVisible(false);
+    }
+
+    public FlowCardPanel getFlowCardPanelHuman(){
+        return flowCardPanelHuman;
     }
 
     @Override

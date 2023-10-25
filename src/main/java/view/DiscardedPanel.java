@@ -30,6 +30,10 @@ public class DiscardedPanel extends JPanel {
     }
 
     public void update(Card last) {
+        if ((!game.getHumanPlayer().hand.isEmpty()) && (last.getNumber() > game.getHumanPlayer().hand.get(0).getNumber())) {
+            gameView.getFlowCardPanelHuman().setDisable();
+        }
+
         removeAll();
         setBackground(new Color(0, 102, 51));
         lastLabel = new JLabel();
@@ -100,7 +104,7 @@ public class DiscardedPanel extends JPanel {
                         "    <b><h2>LOST</h2></b>" +
                         "</center>" +
                         "<p> There was a mistake." +
-                        "<p> The computer played " + game.getLast().getNumber() + "but you had" +
+                        "<p> The computer played " + game.getLast().getNumber() + " but you had" +
                         "<p>  " + game.getHumanPlayer().hand.get(0) + " in your hand." +
                         "</html>");
             } else {

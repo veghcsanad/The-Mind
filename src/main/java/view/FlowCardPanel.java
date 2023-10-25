@@ -21,6 +21,15 @@ public class FlowCardPanel extends JPanel {
         setLayout(flowLayout);
     }
 
+    public void setDisable() {
+        for (Component component : this.getComponents()) {
+            if (component instanceof JButton) {
+                JButton button = (JButton) component;
+                button.setEnabled(false);
+            }
+        }
+    }
+
     private JButton addCardButton(Card card) {
         int btnWidth = 180;
         int btnHeight = 300;
@@ -41,9 +50,22 @@ public class FlowCardPanel extends JPanel {
         return cardPicButton;
     }
 
-    private void addEmptyCard() {
+    private void addEmptyCard(boolean isNoCard) {
         int imgWidth = 135;
         int imgHeight = 200;
+        if (isNoCard) {
+            try {
+                BufferedImage img = ImageIO.read(new File("src/main/resources/cards/emptyNoCard.png"));
+                ImageIcon crdImg = new ImageIcon(img);
+                Image scaledCrdImg = crdImg.getImage().getScaledInstance(imgWidth, imgHeight, Image.SCALE_SMOOTH);
+                JLabel emptyCard = new JLabel(new ImageIcon(scaledCrdImg));
+                add(emptyCard);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            setBackground(new Color(0, 102, 51));
+            return;
+        }
         try {
             BufferedImage img = ImageIO.read(new File("src/main/resources/cards/empty.png"));
             ImageIcon crdImg = new ImageIcon(img);
@@ -60,12 +82,15 @@ public class FlowCardPanel extends JPanel {
         removeAll();
         if (!player.getIsHuman()) {
             for (Card card : player.hand) {
-                addEmptyCard();
+                addEmptyCard(false);
             }
         } else {
             for (Card card : player.hand) {
                 addCardButton(card);
             }
+        }
+        if (player.hand.isEmpty()) {
+            addEmptyCard(true);
         }
         SwingUtilities.updateComponentTreeUI(this);
         revalidate();
