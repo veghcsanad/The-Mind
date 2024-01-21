@@ -1,0 +1,82 @@
+Game 1
+Hand Participant: [24, 29, 71]
+Hand Computer: [2, 58, 76]
+Computer played 2. Time passed: 619
+Participant played 24. Time passed: 759
+Participant played 29. Time passed: 1783
+Participant played 71. Time passed: 8079
+LOST
+-----------------------
+Game 2
+Hand Participant: [11, 52, 81]
+Hand Computer: [25, 27, 87]
+Participant played 11. Time passed: 2031
+Computer played 25. Time passed: 4347
+Computer played 27. Time passed: 620
+Participant played 52. Time passed: 2743
+Participant played 81. Time passed: 16896
+Computer played 87. Time passed: 314
+WON
+-----------------------
+Game 3
+Hand Participant: [4, 34, 63]
+Hand Computer: [22, 24, 70]
+Participant played 4. Time passed: 904
+Computer played 22. Time passed: 5585
+Computer played 24. Time passed: 624
+Participant played 34. Time passed: 1341
+Participant played 63. Time passed: 6423
+Computer played 70. Time passed: 300
+WON
+-----------------------
+Game 4
+Hand Participant: [26, 37, 90]
+Hand Computer: [49, 62, 69]
+Participant played 26. Time passed: 7343
+Computer played 49. Time passed: 7150
+LOST
+-----------------------
+Game 5
+Hand Participant: [33, 70, 99]
+Hand Computer: [10, 54, 100]
+Computer played 10. Time passed: 3117
+Participant played 33. Time passed: 2050
+Computer played 54. Time passed: 6522
+Participant played 70. Time passed: 1764
+Participant played 99. Time passed: 26655
+Computer played 100. Time passed: 312
+WON
+-----------------------
+Game 6
+Hand Participant: [37, 39, 96]
+Hand Computer: [24, 73, 75]
+Computer played 24. Time passed: 7452
+Participant played 37. Time passed: 2283
+Participant played 39. Time passed: 695
+Computer played 73. Time passed: 10573
+Computer played 75. Time passed: 622
+Participant played 96. Time passed: 948
+WON
+-----------------------
+Game 7
+Hand Participant: [13, 16, 45]
+Hand Computer: [1, 5, 68]
+Computer played 1. Time passed: 308
+Computer played 5. Time passed: 1247
+Participant played 13. Time passed: 2027
+Participant played 16. Time passed: 744
+Participant played 45. Time passed: 5544
+Computer played 68. Time passed: 314
+WON
+-----------------------
+Game 8
+Hand Participant: [28, 60, 93]
+Hand Computer: [14, 53, 81]
+Computer played 14. Time passed: 4357
+Participant played 28. Time passed: 3130
+Computer played 53. Time passed: 7768
+Participant played 60. Time passed: 1159
+Computer played 81. Time passed: 6538
+Participant played 93. Time passed: 1077
+WON
+-----------------------

@@ -1,0 +1,74 @@
+Game 1
+Hand Participant: [37, 39, 96]
+Hand Computer: [24, 73, 75]
+Participant played 37. Time passed: 5272
+LOST
+-----------------------
+Game 2
+Hand Participant: [33, 70, 99]
+Hand Computer: [10, 54, 100]
+Computer played 10. Time passed: 3103
+Participant played 33. Time passed: 816
+Computer played 54. Time passed: 6523
+Participant played 70. Time passed: 2084
+Participant played 99. Time passed: 14448
+Computer played 100. Time passed: 311
+WON
+-----------------------
+Game 3
+Hand Participant: [4, 34, 63]
+Hand Computer: [22, 24, 70]
+Participant played 4. Time passed: 711
+Computer played 22. Time passed: 5590
+Computer played 24. Time passed: 622
+Participant played 34. Time passed: 2508
+Participant played 63. Time passed: 9335
+Computer played 70. Time passed: 308
+WON
+-----------------------
+Game 4
+Hand Participant: [26, 37, 90]
+Hand Computer: [49, 62, 69]
+Participant played 26. Time passed: 7815
+Computer played 49. Time passed: 7150
+LOST
+-----------------------
+Game 5
+Hand Participant: [11, 52, 81]
+Hand Computer: [25, 27, 87]
+Participant played 11. Time passed: 592
+Computer played 25. Time passed: 4359
+Computer played 27. Time passed: 620
+Participant played 52. Time passed: 2563
+Participant played 81. Time passed: 9951
+Computer played 87. Time passed: 315
+WON
+-----------------------
+Game 6
+Hand Participant: [24, 29, 71]
+Hand Computer: [2, 58, 76]
+Computer played 2. Time passed: 611
+Participant played 24. Time passed: 869
+Participant played 29. Time passed: 222
+Computer played 58. Time passed: 9008
+Participant played 71. Time passed: 3559
+Computer played 76. Time passed: 305
+WON
+-----------------------
+Game 7
+Hand Participant: [13, 16, 45]
+Hand Computer: [1, 5, 68]
+Computer played 1. Time passed: 301
+Computer played 5. Time passed: 1243
+Participant played 13. Time passed: 1718
+Participant played 16. Time passed: 631
+Participant played 45. Time passed: 4408
+Computer played 68. Time passed: 303
+WON
+-----------------------
+Game 8
+Hand Participant: [28, 60, 93]
+Hand Computer: [14, 53, 81]
+Participant played 28. Time passed: 880
+LOST
+-----------------------

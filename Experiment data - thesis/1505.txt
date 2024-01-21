@@ -1,0 +1,76 @@
+Game 1
+Hand Participant: [28, 60, 93]
+Hand Computer: [14, 53, 81]
+Computer played 14. Time passed: 4207
+Participant played 28. Time passed: 5881
+Computer played 53. Time passed: 7514
+Participant played 60. Time passed: 1628
+Participant played 93. Time passed: 5033
+LOST
+-----------------------
+Game 2
+Hand Participant: [4, 34, 63]
+Hand Computer: [22, 24, 70]
+Participant played 4. Time passed: 816
+Participant played 34. Time passed: 4247
+LOST
+-----------------------
+Game 3
+Hand Participant: [11, 52, 81]
+Hand Computer: [25, 27, 87]
+Participant played 11. Time passed: 2216
+Computer played 25. Time passed: 4208
+Computer played 27. Time passed: 601
+Participant played 52. Time passed: 2789
+Participant played 81. Time passed: 3655
+Computer played 87. Time passed: 300
+WON
+-----------------------
+Game 4
+Hand Participant: [37, 39, 96]
+Hand Computer: [24, 73, 75]
+Participant played 37. Time passed: 5999
+LOST
+-----------------------
+Game 5
+Hand Participant: [33, 70, 99]
+Hand Computer: [10, 54, 100]
+Computer played 10. Time passed: 3005
+Participant played 33. Time passed: 7043
+Computer played 54. Time passed: 6312
+Participant played 70. Time passed: 9703
+Participant played 99. Time passed: 6551
+Computer played 100. Time passed: 300
+WON
+-----------------------
+Game 6
+Hand Participant: [24, 29, 71]
+Hand Computer: [2, 58, 76]
+Computer played 2. Time passed: 601
+Participant played 24. Time passed: 4670
+Participant played 29. Time passed: 1487
+Participant played 71. Time passed: 8071
+LOST
+-----------------------
+Game 7
+Hand Participant: [13, 16, 45]
+Hand Computer: [1, 5, 68]
+Computer played 1. Time passed: 300
+Computer played 5. Time passed: 1201
+Participant played 13. Time passed: 328
+Participant played 16. Time passed: 1247
+Participant played 45. Time passed: 5912
+Computer played 68. Time passed: 300
+WON
+-----------------------
+Game 8
+Hand Participant: [26, 37, 90]
+Hand Computer: [49, 62, 69]
+Participant played 26. Time passed: 3495
+Participant played 37. Time passed: 3456
+Computer played 49. Time passed: 3605
+Computer played 62. Time passed: 3909
+Computer played 69. Time passed: 2103
+Participant played 90. Time passed: 3053
+WON
+-----------------------

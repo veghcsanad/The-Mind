@@ -1,0 +1,62 @@
+Game 1
+Hand Participant: [24, 29, 71]
+Hand Computer: [2, 58, 76]
+Computer played 2. Time passed: 617
+Participant played 24. Time passed: 1141
+Participant played 29. Time passed: 2360
+Participant played 71. Time passed: 1015
+LOST
+-----------------------
+Game 2
+Hand Participant: [13, 16, 45]
+Hand Computer: [1, 5, 68]
+Computer played 1. Time passed: 305
+Participant played 13. Time passed: 734
+LOST
+-----------------------
+Game 3
+Hand Participant: [11, 52, 81]
+Hand Computer: [25, 27, 87]
+Participant played 11. Time passed: 2783
+Computer played 25. Time passed: 4350
+Computer played 27. Time passed: 624
+Participant played 52. Time passed: 1073
+Participant played 81. Time passed: 19487
+Computer played 87. Time passed: 313
+WON
+-----------------------
+Game 4
+Hand Participant: [37, 39, 96]
+Hand Computer: [24, 73, 75]
+Participant played 37. Time passed: 1440
+LOST
+-----------------------
+Game 5
+Hand Participant: [4, 34, 63]
+Hand Computer: [22, 24, 70]
+Participant played 4. Time passed: 864
+Computer played 22. Time passed: 5603
+Computer played 24. Time passed: 626
+Participant played 34. Time passed: 321
+Participant played 63. Time passed: 17039
+Computer played 70. Time passed: 308
+WON
+-----------------------
+Game 6
+Hand Participant: [26, 37, 90]
+Hand Computer: [49, 62, 69]
+Computer played 49. Time passed: 15227
+LOST
+-----------------------
+Game 7
+Hand Participant: [33, 70, 99]
+Hand Computer: [10, 54, 100]
+Participant played 33. Time passed: 1519
+LOST
+-----------------------
+Game 8
+Hand Participant: [28, 60, 93]
+Hand Computer: [14, 53, 81]
+Participant played 28. Time passed: 1064
+LOST
+-----------------------
